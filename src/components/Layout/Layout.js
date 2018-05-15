@@ -17,7 +17,6 @@ class Layout extends Component {
   }
 
   sideDrawerToggler() {
-    console.log(this.state.showSideDrawer);    
     this.setState((prevState, props) => ({showSideDrawer: !prevState.showSideDrawer}));
   }
 
