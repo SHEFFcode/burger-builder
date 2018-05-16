@@ -66,8 +66,15 @@ class ContactData extends Component {
       });
   }
 
-  render() {
+  inputChangedHandler(inputId, event) {
+    const updatedOrderForm = {...this.state.orderForm};
+    const updatedFormElement = {...updatedOrderForm[inputId]}; // we need this because call above is not a deep clone
+    updatedFormElement.value = event.target.value;
+    updatedOrderForm[inputId] = updatedFormElement;
+    this.setState({orderForm: updatedOrderForm});
+  }
 
+  render() {
     const formElementsArr = [];
 
     for (let key of Object.keys(this.state.orderForm)) {
@@ -86,6 +93,7 @@ class ContactData extends Component {
               elementType={formElement.config.elementType}
               elementConfig={formElement.config.elementConfig}
               value={formElement.config.value}
+              changed={this.inputChangedHandler.bind(this, formElement.id)}
             />
           );
         })}
