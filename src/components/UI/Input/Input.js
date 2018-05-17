@@ -8,30 +8,30 @@ export default (props) => {
   if (props.invalid && props.shouldValidate) {
     inputClasses.push(classes.Invalid);
   }
-  
+
   switch (props.elementType) {
     case 'input':
       inputEl = (
-        <input 
-          className={inputClasses.join(' ')} 
-          {...props.elementConfig} 
-          value={props.value} 
+        <input
+          className={inputClasses.join(' ')}
+          {...props.elementConfig}
+          value={props.value}
           onChange={props.changed}
         />)
       break;
     case 'textarea':
       inputEl = (
-        <textarea 
-          className={inputClasses.join(' ')} 
-          {...props.elementConfig} 
-          value={props.value} 
+        <textarea
+          className={inputClasses.join(' ')}
+          {...props.elementConfig}
+          value={props.value}
           onChange={props.changed}
         ></textarea>)
       break;
     case 'select':
       inputEl = (
-        <select 
-          className={inputClasses.join(' ')} 
+        <select
+          className={inputClasses.join(' ')}
           value={props.value}
           onChange={props.changed}
         >
@@ -42,10 +42,10 @@ export default (props) => {
       break;
     default:
       inputEl = (
-        <input 
-          className={inputClasses.join(' ')} 
-          {...props.elementConfig} 
-          value={props.value} 
+        <input
+          className={inputClasses.join(' ')}
+          {...props.elementConfig}
+          value={props.value}
           onChange={props.changed}
         />)
       break;

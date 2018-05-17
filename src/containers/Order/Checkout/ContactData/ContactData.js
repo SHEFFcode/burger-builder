@@ -4,6 +4,7 @@ import classes from './ContactData.css';
 import axios from '../../../../axios-orders';
 import Spinner from '../../../../components/UI/Spinner/Spinner';
 import Input from '../../../../components/UI/Input/Input';
+import { connect } from 'react-redux';
 
 class ContactData extends Component {
   state = {
@@ -87,12 +88,12 @@ class ContactData extends Component {
   }
 
   inputChangedHandler(inputId, event) {
-    const updatedOrderForm = {...this.state.orderForm};
-    const updatedFormElement = {...updatedOrderForm[inputId]}; // we need this because call above is not a deep clone
+    const updatedOrderForm = { ...this.state.orderForm };
+    const updatedFormElement = { ...updatedOrderForm[inputId] }; // we need this because call above is not a deep clone
     updatedFormElement.value = event.target.value;
     updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
     updatedOrderForm[inputId] = updatedFormElement;
-    this.setState({orderForm: updatedOrderForm});
+    this.setState({ orderForm: updatedOrderForm });
   }
 
   checkValidity(value, rules) {
@@ -145,4 +146,9 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData;
+const mapStateToProps = (state) => ({
+  ingredients: state.ingredients,
+  totalPrice: state.totalPrice
+});
+
+export default connect(mapStateToProps)(ContactData);
