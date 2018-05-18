@@ -16,14 +16,15 @@ const setIngredients = (ingredients) => ({
   ingredients
 });
 
-const fetchIngredientsFailed = () => ({
-  type: actionTypes.FETCH_INGREDIENTS_FAILED
+const fetchIngredientsFailed = (error) => ({
+  type: actionTypes.FETCH_INGREDIENTS_FAILED,
+  error
 })
 export const initIngredients = () => {
   return dispatch => {
     axios.get('/ingredients.json')
       .then(response => dispatch(setIngredients(response.data)))
-      .catch(error => dispatch(fetchIngredientsFailed()));
+      .catch(error => dispatch(fetchIngredientsFailed(error)));
   }
 };
 
